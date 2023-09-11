@@ -1,10 +1,10 @@
-﻿using FluentFTP;
+﻿using System.Text;
+
+using FluentFTP;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using System.Text;
 
 using XtremeIdiots.Portal.RepositoryApi.Abstractions.Constants;
 using XtremeIdiots.Portal.RepositoryApiClient;
@@ -24,8 +24,9 @@ builder.ConfigureAppConfiguration((hostContext, builder) =>
 
     services.AddRepositoryApiClient(options =>
     {
-        options.BaseUrl = hostContext.Configuration["repository_api_base_url"] ?? hostContext.Configuration["apim_base_url"];
-        options.ApiKey = hostContext.Configuration["portal_repository_apim_subscription_key"];
+        options.BaseUrl = hostContext.Configuration["apim_base_url"] ?? hostContext.Configuration["repository_base_url"] ?? throw new ArgumentNullException("apim_base_url");
+        options.ApiKey = hostContext.Configuration["portal_repository_apim_subscription_key"] ?? throw new ArgumentNullException("portal_repository_apim_subscription_key");
+        options.ApiAudience = hostContext.Configuration["repository_api_application_audience"] ?? throw new ArgumentNullException("repository_api_application_audience");
         options.ApiPathPrefix = hostContext.Configuration["repository_api_path_prefix"] ?? "repository";
     });
 
