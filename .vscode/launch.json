@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/bot-config-generator/bin/Debug/net7.0/bot-config-generator.dll",
+            "program": "${workspaceFolder}/src/bot-config-generator/bin/Debug/net8.0/bot-config-generator.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/bot-config-generator",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
